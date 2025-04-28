@@ -8,9 +8,9 @@
 
 		:root {
 			/* colors */
-			--black: #000000;
-			--purple: #580a7f;
-			--white: #ffffff;
+			--black: #0e1216;
+			--highlight: #005869;
+			--white: #abb2bf;
 			/* fonts */
 			--font-accent: "Cormorant", serif;
 			--font-body: "Work Sans", sans-serif;
@@ -44,7 +44,7 @@
 		}
 
 		p span {
-			color: var(--purple);
+			color: var(--highlight);
 			font-family: var(--font-accent);
 			font-size: 7rem;
 			margin-bottom: -1rem;
@@ -61,7 +61,7 @@
 		}
 
 		li::before {
-			color: var(--purple);
+			color: var(--highlight);
 			content: "\203A";
 			display: inline-block;
 			margin-right: 1rem;
@@ -69,6 +69,10 @@
 
 		ul.bring-closer {
 			padding-top: 0rem;
+		}
+
+		li>img {
+			border-radius: 30px;
 		}
 	</style>
 </head>
@@ -80,23 +84,33 @@
 		</br>
 		<p>mostly working with:</p>
 		<ul>
-			<li><img src="https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white"
-					alt="golang"></li>
-			<li><img
+			<li>
+				<img src="https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white"
+					alt="golang">
+			</li>
+			<li>
+				<img
 					src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"
-					alt="typescript"></li>
-			<li><img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
-					alt="python" </li>
-			<li><img
+					alt="typescript">
+			</li>
+			<li>
+				<img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
+					alt="python">
+			</li>
+			<li>
+				<img
 					src="https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white"
-					alt="shell scripts" </li>
+					alt="shell scripts">
+			</li>
 		</ul>
 		</br>
 		<p><span>&</span> currently playing around with:</p>
 		<ul class="bring-closer">
-			<li><img
+			<li>
+				<img
 					src="https://img.shields.io/badge/zig-%23000000.svg?style=for-the-badge&logo=zig&logoColor=white&color=yellow"
-					alt="zig"></li>
+					alt="zig">
+			</li>
 		</ul>
 		</br>
 		</br>
