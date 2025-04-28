@@ -5,7 +5,7 @@ Header font can be [downloaded from fontspace](https://www.fontspace.com/canterb
 To capture screenshot:
 
 - open dev tools
-- set page size to 900x850
+- set page size to 900x1000
 - select `body` tag
 - screenshot node
 
