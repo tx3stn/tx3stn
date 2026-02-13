@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>repo card capture page</title>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@300&family=Work+Sans:wght@300&display=swap");
+
+		@font-face {
+			font-family: "Canterbury Embedded";
+			src: url("./CanterburyRegular-MVqn.ttf") format("truetype");
+			font-display: swap;
+		}
+		@font-face {
+			font-family: "Hack Nerd Embedded";
+			src: url("./HackNerdFont-Regular.ttf") format("truetype");
+			font-display: swap;
+		}
+
+		:root {
+			--black: #0e1216;
+			--highlight: #005869;
+			--white: #abb2bf;
+			--lang-chip-bg: rgba(0, 88, 105, 0.2);
+			--lang-chip-fg: var(--highlight);
+			--lang-go-bg: #00add8;
+			--lang-go-fg: #ffffff;
+			--font-accent: "Cormorant", serif;
+			--font-body: "Work Sans", sans-serif;
+			--font-header: "Canterbury Embedded", "Canterbury Regular", "Canterbury", "CanterburyRegular", "Canterbury-Regular", serif;
+			--font-nerd: "Hack Nerd Embedded", "Hack Nerd Font", "Hack Nerd Font Mono", "Symbols Nerd Font", monospace;
+		}
+
+		body {
+			background: transparent;
+			color: var(--white);
+			font-family: var(--font-body);
+			margin: 2rem;
+		}
+
+		html {
+			background: transparent;
+		}
+
+		h1 {
+			font-family: var(--font-header);
+			color: var(--highlight);
+			font-size: 4rem;
+			margin: 0 0 1rem;
+		}
+
+		.capture-list {
+			display: grid;
+			gap: 1.5rem;
+			max-width: 42rem;
+		}
+
+		.capture {
+			display: block;
+		}
+
+		repo-card {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="capture-list">
+		<section id="pkb-card" class="capture">
+			<repo-card repo="pkb" stars="6" 
+				description="config driven CLI to manage markdown files for a personal knowledge base"></repo-card>
+		</section>
+		<section id="vrsn-card" class="capture">
+			<repo-card repo="vrsn" stars="3"
+				description="a single tool for all of your semantic versioning needs"></repo-card>
+		</section>
+		<section id="pair-card" class="capture">
+			<repo-card repo="pair" stars="1" 
+				description="pair commiting made easier"></repo-card>
+		</section>
+		<section id="plex2pl-card" class="capture">
+			<repo-card repo="plex2pl" stars="1" 
+				description="convert plex playlists to other playlist formats"></repo-card>
+		</section>
+	</div>
+
+	<script>
+		class RepoCard extends HTMLElement {
+			connectedCallback() {
+				const owner = "tx3stn";
+				const repo = this.getAttribute("repo");
+				const description = this.getAttribute("description") || "";
+				const stars = this.getAttribute("stars") || "0";
+				const language = this.getAttribute("language") || "Go";
+				const languageIcon = this.getAttribute("language-icon") || "";
+				const languageColor = this.getAttribute("language-color") || "var(--lang-go-fg)";
+				const languageBg = this.getAttribute("language-bg") || "var(--lang-go-bg)";
+				const href = this.getAttribute("href") || `https://github.com/${owner}/${repo}`;
+
+				this.attachShadow({ mode: "open" });
+				this.shadowRoot.innerHTML = `
+					<style>
+						a {
+							display: block;
+							min-height: 8.9rem;
+							position: relative;
+							border-radius: 30px;
+							padding: 1.15rem 1.35rem 2.05rem;
+							text-decoration: none;
+							color: var(--white);
+							background: #020303;
+						}
+
+						.repo-name {
+							font-family: var(--font-header);
+							font-size: 3.2rem;
+							line-height: 1;
+							color: var(--highlight);
+							margin: 0;
+						}
+
+						.repo-description {
+							font-family: var(--font-body);
+							font-size: 1.35rem;
+							line-height: 1.3;
+							margin: 0.35rem 0 0;
+						}
+
+						.repo-meta {
+							display: flex;
+							gap: 0.75rem;
+							align-items: center;
+							position: absolute;
+							right: 1.35rem;
+							bottom: 0.8rem;
+						}
+
+						.language-chip {
+							display: inline-flex;
+							align-items: center;
+							gap: 0.4rem;
+							border-radius: 30px;
+							padding: 0.2rem 0.65rem;
+							background: rgba(0, 88, 105, 0.2);
+							font-family: var(--font-body);
+							font-size: 0.95rem;
+							color: var(--white);
+						}
+
+						.language-icon {
+							font-family: var(--font-nerd);
+							color: var(--highlight);
+							line-height: 1;
+						}
+
+						.star-chip {
+							display: inline-flex;
+							align-items: center;
+							gap: 0.4rem;
+							border-radius: 30px;
+							padding: 0.2rem 0.65rem;
+							font-family: var(--font-body);
+							font-size: 0.95rem;
+							color: var(--white);
+						}
+
+						.star-icon {
+							color: #f7c948;
+							line-height: 1;
+						}
+					</style>
+					<a href="${href}" target="_blank" rel="noopener noreferrer">
+						<p class="repo-name">${repo}</p>
+						<p class="repo-description">${description}</p>
+						<div class="repo-meta">
+							<span class="star-chip" aria-label="${repo} stars">
+								<span class="star-icon" aria-hidden="true">★</span>
+								<span>${stars}</span>
+							</span>
+							<span class="language-chip" aria-label="${repo} language" style="background: ${languageBg}; color: ${languageColor};">
+								<span class="language-icon" aria-hidden="true" style="color: ${languageColor};">${languageIcon}</span>
+								<span>${language}</span>
+							</span>
+						</div>
+					</a>
+				`;
+			}
+		}
+
+		customElements.define("repo-card", RepoCard);
+	</script>
+</body>
+
+</html>
