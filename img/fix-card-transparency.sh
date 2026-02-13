@@ -7,11 +7,16 @@ set -euo pipefail
 #
 # Expects input files named <name>.png in the current directory.
 # Writes output files as <name>-fixed.png.
+# Applies a rounded alpha mask to enforce transparent corners.
+# Optional env var:
+#   RADIUS=30
 
 if ! command -v magick >/dev/null 2>&1; then
   echo "error: ImageMagick 'magick' command not found in PATH" >&2
   exit 1
 fi
+
+radius="${RADIUS:-30}"
 
 if [[ $# -gt 0 ]]; then
   files=("$@")
@@ -28,18 +33,15 @@ for f in "${files[@]}"; do
     continue
   fi
 
+  w="$(magick identify -format "%w" "$in")"
+  h="$(magick identify -format "%h" "$in")"
+
   magick "$in" \
-    -alpha set \
-    -fuzz 14% \
-    -fill none \
-    -draw "color 0,0 floodfill" \
-    -draw "color %[fx:w-1],0 floodfill" \
-    -draw "color 0,%[fx:h-1] floodfill" \
-    -draw "color %[fx:w-1],%[fx:h-1] floodfill" \
-    -background "#0e1216" \
-    -alpha background \
+    \( -size "${w}x${h}" xc:none -fill white -draw "roundrectangle 0,0,$((w-1)),$((h-1)),${radius},${radius}" \) \
+    -alpha off \
+    -compose CopyOpacity \
+    -composite \
     "$out"
 
   echo "wrote: $out"
 done
-
