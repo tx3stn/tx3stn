@@ -1,6 +1,6 @@
 ![generated-page](https://github.com/user-attachments/assets/19917434-76bf-414c-952e-b4a85293670c)
 
-## some things I work on sometimes
+### some things I made
 
 <p align="center">
   <a href="https://github.com/tx3stn/pkb">
