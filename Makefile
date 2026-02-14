@@ -9,4 +9,4 @@ capture-cards:
 
 .PHONY: fix-images
 fix-images:
-	@RADIUS=30 ./img/fix-card-transparency.sh pkb vrsn pair plex2pl
+	./fix-card-transparency.sh

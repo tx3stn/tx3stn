@@ -88,7 +88,6 @@
 	<script>
 		class RepoCard extends HTMLElement {
 			connectedCallback() {
-				const owner = "tx3stn";
 				const repo = this.getAttribute("repo");
 				const description = this.getAttribute("description") || "";
 				const stars = this.getAttribute("stars") || "0";
@@ -96,7 +95,7 @@
 				const languageIcon = this.getAttribute("language-icon") || "";
 				const languageColor = this.getAttribute("language-color") || "var(--lang-go-fg)";
 				const languageBg = this.getAttribute("language-bg") || "var(--lang-go-bg)";
-				const href = this.getAttribute("href") || `https://github.com/${owner}/${repo}`;
+				const href = this.getAttribute("href") || `https://github.com/tx3stn/${repo}`;
 
 				this.attachShadow({ mode: "open" });
 				this.shadowRoot.innerHTML = `
@@ -114,7 +113,7 @@
 
 						.repo-name {
 							font-family: var(--font-header);
-							font-size: 3.2rem;
+							font-size: 3rem;
 							line-height: 1;
 							color: var(--highlight);
 							margin: 0;
@@ -144,7 +143,8 @@
 							padding: 0.2rem 0.65rem;
 							background: rgba(0, 88, 105, 0.2);
 							font-family: var(--font-body);
-							font-size: 0.95rem;
+							font-size: 1rem;
+							font-weight: 700;
 							color: var(--white);
 						}
 
@@ -161,7 +161,8 @@
 							border-radius: 30px;
 							padding: 0.2rem 0.65rem;
 							font-family: var(--font-body);
-							font-size: 0.95rem;
+							font-size: 1rem;
+							font-weight: 700;
 							color: var(--white);
 						}
 
